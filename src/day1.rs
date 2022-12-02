@@ -1,5 +1,3 @@
-use itertools::Itertools;
-
 use crate::utils::read_input;
 
 pub fn run_easy() {
