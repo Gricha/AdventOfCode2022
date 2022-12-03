@@ -1,7 +1,7 @@
 use crate::utils::read_input;
 
 pub fn run_easy() {
-    let input = read_input("day1.txt");
+    let input = read_input("inputs/day1.txt");
 
     let segments = input.split(|x| x.is_empty());
 
@@ -16,7 +16,7 @@ pub fn run_easy() {
 }
 
 pub fn run_hard() {
-    let input = read_input("day1.txt");
+    let input = read_input("inputs/day1.txt");
 
     let segments = input.split(|x| x.is_empty());
 

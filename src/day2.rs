@@ -3,7 +3,7 @@ use itertools::Itertools;
 use crate::utils::read_input;
 
 pub fn run_easy() {
-    let input = read_input("day2.txt");
+    let input = read_input("inputs/day2.txt");
     let res: u32 = input
         .into_iter()
         .map(|l| l.split(' ').map(|v| v.to_string()).collect_vec())
@@ -41,11 +41,11 @@ pub fn run_easy() {
         })
         .sum();
 
-    dbg!(res);
+    println!("{}", res);
 }
 
 pub fn run_hard() {
-    let input = read_input("day2.txt");
+    let input = read_input("inputs/day2.txt");
     let res: u32 = input
         .into_iter()
         .map(|l| l.split(' ').map(|v| v.to_string()).collect_vec())
@@ -83,5 +83,5 @@ pub fn run_hard() {
         })
         .sum();
 
-    dbg!(res);
+    println!("{}", res);
 }
