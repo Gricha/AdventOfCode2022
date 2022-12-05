@@ -22,15 +22,15 @@ pub fn run_easy() {
 
             let mut value_mapping = HashMap::<u32, u8>::new();
 
-            let mut column = 0;
+            let mut column = 1;
             let mut idx = 0;
             loop {
                 let val = iter.next();
                 if let Some(character) = val {
-                    if character != ' ' && character != '[' && character != ']' {
+                    if character.is_alphanumeric() {
                         value_mapping.insert(column, character as u8);
                     }
-                    column = idx / 4;
+                    column = (idx / 4) + 1;
                     idx += 1;
                 } else {
                     break;
@@ -41,8 +41,7 @@ pub fn run_easy() {
         .rev()
         .fold(HashMap::new(), |mut acc, vals| {
             for (k, v) in vals.into_iter() {
-                acc.entry(k).or_insert_with(Vec::new);
-                acc.get_mut(&k).unwrap().push(v as char);
+                acc.entry(k).or_insert_with(Vec::new).push(v as char);
             }
             acc
         });
@@ -59,20 +58,18 @@ pub fn run_easy() {
         .collect_vec();
     for (how_many, from, to) in moves.iter() {
         initial_state
-            .entry(from - 1)
+            .entry(*from)
             .or_insert_with(std::vec::Vec::new);
-        initial_state
-            .entry(to - 1)
-            .or_insert_with(std::vec::Vec::new);
+        initial_state.entry(*to).or_insert_with(std::vec::Vec::new);
         for _ in 0..*how_many {
-            let val = initial_state.get_mut(&(from - 1)).unwrap().pop().unwrap();
-            initial_state.get_mut(&(*to - 1)).unwrap().push(val);
+            let val = initial_state.get_mut(from).unwrap().pop().unwrap();
+            initial_state.get_mut(to).unwrap().push(val);
         }
     }
 
     let columns_count = initial_state.keys().len();
 
-    for i in 0..columns_count {
+    for i in 1..=columns_count {
         print!(
             "{}",
             initial_state.get(&(i as u32)).unwrap().last().unwrap()
@@ -101,15 +98,15 @@ pub fn run_hard() {
 
             let mut value_mapping = HashMap::<u32, u8>::new();
 
-            let mut column = 0;
+            let mut column = 1;
             let mut idx = 0;
             loop {
                 let val = iter.next();
                 if let Some(character) = val {
-                    if character != ' ' && character != '[' && character != ']' {
+                    if character.is_alphanumeric() {
                         value_mapping.insert(column, character as u8);
                     }
-                    column = idx / 4;
+                    column = (idx / 4) + 1;
                     idx += 1;
                 } else {
                     break;
@@ -120,12 +117,10 @@ pub fn run_hard() {
         .rev()
         .fold(HashMap::new(), |mut acc, vals| {
             for (k, v) in vals.into_iter() {
-                acc.entry(k).or_insert_with(Vec::new);
-                acc.get_mut(&k).unwrap().push(v as char);
+                acc.entry(k).or_insert_with(Vec::new).push(v as char);
             }
             acc
         });
-    dbg!(&initial_state);
     let moves = segments
         .next()
         .unwrap()
@@ -139,13 +134,11 @@ pub fn run_hard() {
         .collect_vec();
     for (how_many, from, to) in moves.iter() {
         initial_state
-            .entry(from - 1)
+            .entry(*from)
             .or_insert_with(std::vec::Vec::new);
-        initial_state
-            .entry(to - 1)
-            .or_insert_with(std::vec::Vec::new);
+        initial_state.entry(*to).or_insert_with(std::vec::Vec::new);
 
-        let from_col = initial_state.get_mut(&(from - 1)).unwrap();
+        let from_col = initial_state.get_mut(from).unwrap();
         let values = from_col
             .iter()
             .rev()
@@ -157,14 +150,14 @@ pub fn run_hard() {
             from_col.pop();
         }
         initial_state
-            .get_mut(&(to - 1))
+            .get_mut(to)
             .unwrap()
             .extend(values.into_iter());
     }
 
     let columns_count = initial_state.keys().len();
 
-    for i in 0..columns_count {
+    for i in 1..=columns_count {
         print!(
             "{}",
             initial_state.get(&(i as u32)).unwrap().last().unwrap()
