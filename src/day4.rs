@@ -1,5 +1,3 @@
-use std::collections::HashSet;
-
 use itertools::Itertools;
 
 use crate::utils::read_input;
@@ -51,7 +49,7 @@ pub fn run_hard() {
                 .unwrap();
             val
         })
-        .map(|(x, y)| if (x.0 <= y.1 && y.0 <= x.1) { 1 } else { 0 })
+        .map(|(x, y)| if x.0 <= y.1 && y.0 <= x.1 { 1 } else { 0 })
         .sum();
     println!("{}", result);
 }
