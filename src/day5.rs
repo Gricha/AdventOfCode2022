@@ -17,23 +17,10 @@ pub fn run_easy() {
         .skip(1)
         .rev()
         .map(|x| {
-            // floor
-            let mut iter = x.chars();
-
-            let mut value_mapping = HashMap::<u32, u8>::new();
-
-            let mut column = 1;
-            let mut idx = 0;
-            loop {
-                let val = iter.next();
-                if let Some(character) = val {
-                    if character.is_alphanumeric() {
-                        value_mapping.insert(column, character as u8);
-                    }
-                    column = (idx / 4) + 1;
-                    idx += 1;
-                } else {
-                    break;
+            let mut value_mapping = HashMap::<usize, char>::new();
+            for (i, character) in x.chars().enumerate() {
+                if character.is_alphanumeric() {
+                    value_mapping.insert((i / 4) + 1, character);
                 }
             }
             value_mapping
@@ -41,7 +28,7 @@ pub fn run_easy() {
         .rev()
         .fold(HashMap::new(), |mut acc, vals| {
             for (k, v) in vals.into_iter() {
-                acc.entry(k).or_insert_with(Vec::new).push(v as char);
+                acc.entry(k).or_insert_with(Vec::new).push(v);
             }
             acc
         });
@@ -49,9 +36,9 @@ pub fn run_easy() {
         .next()
         .unwrap()
         .into_iter()
-        .map(|line| -> (u32, u32, u32) {
+        .map(|line| -> (usize, usize, usize) {
             line.split_ascii_whitespace()
-                .filter_map(|x| x.parse::<u32>().ok())
+                .filter_map(|x| x.parse::<usize>().ok())
                 .collect_tuple()
                 .unwrap()
         })
@@ -70,10 +57,7 @@ pub fn run_easy() {
     let columns_count = initial_state.keys().len();
 
     for i in 1..=columns_count {
-        print!(
-            "{}",
-            initial_state.get(&(i as u32)).unwrap().last().unwrap()
-        );
+        print!("{}", initial_state.get(&i).unwrap().last().unwrap());
     }
     println!();
 }
@@ -93,23 +77,10 @@ pub fn run_hard() {
         .skip(1)
         .rev()
         .map(|x| {
-            // floor
-            let mut iter = x.chars();
-
-            let mut value_mapping = HashMap::<u32, u8>::new();
-
-            let mut column = 1;
-            let mut idx = 0;
-            loop {
-                let val = iter.next();
-                if let Some(character) = val {
-                    if character.is_alphanumeric() {
-                        value_mapping.insert(column, character as u8);
-                    }
-                    column = (idx / 4) + 1;
-                    idx += 1;
-                } else {
-                    break;
+            let mut value_mapping = HashMap::<usize, char>::new();
+            for (i, character) in x.chars().enumerate() {
+                if character.is_alphanumeric() {
+                    value_mapping.insert((i / 4) + 1, character);
                 }
             }
             value_mapping
@@ -117,7 +88,7 @@ pub fn run_hard() {
         .rev()
         .fold(HashMap::new(), |mut acc, vals| {
             for (k, v) in vals.into_iter() {
-                acc.entry(k).or_insert_with(Vec::new).push(v as char);
+                acc.entry(k).or_insert_with(Vec::new).push(v);
             }
             acc
         });
@@ -125,9 +96,9 @@ pub fn run_hard() {
         .next()
         .unwrap()
         .into_iter()
-        .map(|line| -> (u32, u32, u32) {
+        .map(|line| -> (usize, usize, usize) {
             line.split_ascii_whitespace()
-                .filter_map(|x| x.parse::<u32>().ok())
+                .filter_map(|x| x.parse::<usize>().ok())
                 .collect_tuple()
                 .unwrap()
         })
@@ -158,10 +129,7 @@ pub fn run_hard() {
     let columns_count = initial_state.keys().len();
 
     for i in 1..=columns_count {
-        print!(
-            "{}",
-            initial_state.get(&(i as u32)).unwrap().last().unwrap()
-        );
+        print!("{}", initial_state.get(&i).unwrap().last().unwrap());
     }
     println!();
 }
