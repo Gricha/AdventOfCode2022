@@ -3,6 +3,7 @@ mod day2;
 mod day3;
 mod day4;
 mod day5;
+mod day6;
 mod utils;
 
 fn main() {
@@ -16,4 +17,6 @@ fn main() {
     day4::run_hard();
     day5::run_easy();
     day5::run_hard();
+    day6::run_easy();
+    day6::run_hard();
 }
