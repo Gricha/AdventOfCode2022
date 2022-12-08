@@ -23,7 +23,7 @@ fn parse_line(line: &str) -> LineOutput {
         "$ ls" => LineOutput::Cmd(Command::Ls),
         "$ cd .." => LineOutput::Cmd(Command::GoUp),
         l if l.starts_with("$ cd") => {
-            LineOutput::Cmd(Command::GoInside(l.split(" ").last().unwrap().to_owned()))
+            LineOutput::Cmd(Command::GoInside(l.split(' ').last().unwrap().to_owned()))
         }
         l if l.starts_with("dir ") => LineOutput::Dir(l.split(' ').last().unwrap().to_owned()),
         l => {
