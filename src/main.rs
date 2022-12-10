@@ -11,24 +11,34 @@ mod day9;
 mod utils;
 
 fn main() {
+    println!("Day 1");
     day1::run_easy();
     day1::run_hard();
+    println!("\nDay 2");
     day2::run_easy();
     day2::run_hard();
+    println!("\nDay 3");
     day3::run_easy();
     day3::run_hard();
+    println!("\nDay 4");
     day4::run_easy();
     day4::run_hard();
+    println!("\nDay 5");
     day5::run_easy();
     day5::run_hard();
+    println!("\nDay 6");
     day6::run_easy();
     day6::run_hard();
+    println!("\nDay 7");
     day7::run_easy();
     day7::run_hard();
+    println!("\nDay 8");
     day8::run_easy();
     day8::run_hard();
+    println!("\nDay 9");
     day9::run_easy();
     day9::run_hard();
+    println!("\nDay 10");
     day10::run_easy();
     day10::run_hard();
 }
