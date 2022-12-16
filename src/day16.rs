@@ -125,7 +125,7 @@ pub fn run_easy() {
         0,
     );
 
-    dbg!(max_value);
+    println!("{}", max_value);
 }
 
 fn max_path_with_restriction(
@@ -277,13 +277,6 @@ pub fn run_hard() {
                     bitwise_number /= 2;
                 }
 
-                // let set_zero_string = set_zero.iter().sorted().cloned().join(",");
-                // let set_one_string = set_one.iter().sorted().cloned().join(",");
-
-                // if cache_reverse.contains_key(&set_one_string) {
-                //     continue;
-                // }
-
                 let mut zero_yield_cache = HashMap::new();
                 let zero_value = max_path_with_restriction(
                     "AA",
@@ -309,14 +302,12 @@ pub fn run_hard() {
                     0,
                 );
 
-                if i % 100 == 0 {
-                    println!("{}", i);
-                }
                 max_global = std::cmp::max(max_global, zero_value + one_value);
-                // cache_reverse.insert(set_zero_string, zero_value + one_value);
             }
+            max_global
         })
-        .max();
+        .max()
+        .unwrap();
 
-    dbg!(max_glb);
+    println!("{}", max_glb);
 }
