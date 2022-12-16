@@ -8,4 +8,5 @@ edition = "2021"
 [dependencies]
 itertools = "0.10.5"
 num = "0.4.0"
+rayon = "1.6.1"
 regex = "1.7.0"
