@@ -13,6 +13,7 @@ mod day2;
 mod day20;
 mod day21;
 mod day22;
+mod day23;
 mod day3;
 mod day4;
 mod day5;
@@ -86,7 +87,10 @@ fn main() {
     // println!("\nDay 21");
     // day21::run_easy();
     // day21::run_hard();
-    println!("\nDay 22");
-    day22::run_easy();
-    day22::run_hard();
+    // println!("\nDay 22");
+    // day22::run_easy();
+    // day22::run_hard();
+    println!("\nDay 23");
+    day23::run_easy();
+    day23::run_hard();
 }
